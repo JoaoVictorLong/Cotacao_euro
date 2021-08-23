@@ -1,17 +1,17 @@
-from requests import get
+from requests import get, exceptions
 from time import sleep
 from os import system
-import pygame
-import datetime
+from datetime import datetime
+from pygame import mixer
 count = 0
-valormaior = 5.90
-pygame.init()
+valormaior = 6.10
+mixer.init()
 system('cls')
 system("title 'Cotacao do euro'")
 while True:
     try:
         api = get("http://economia.awesomeapi.com.br/all/EUR-BRL").json()
-    except requests.exceptions.RequestException:
+    except exceptions.RequestException:
         print("Erro ao tentar conexão")
         break
     result = round(float(api['EUR']['ask']), 2)
